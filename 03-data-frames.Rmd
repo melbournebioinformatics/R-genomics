@@ -23,7 +23,7 @@ metadata <- read.csv("data/Ecoli_metadata.csv")
 > * know how to access any element of a `data.frame`
 
 ------------
-<!--
+
 # What are data frames?
 
 `data.frame` is the _de facto_ data structure for most tabular data and what we
@@ -47,9 +47,8 @@ can be set to `FALSE`:
 some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
 ```
 
-<!--- talk about colClasses argument?, row names?  --->
 
-<!--
+<!--- talk about colClasses argument?, row names?  --->
 
 You can also create `data.frame` manually with the function `data.frame()`. This
 function can also take the argument `stringsAsFactors`. Compare the output of
@@ -67,7 +66,6 @@ example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
 str(example_data)
 ```
 
--->
 
 # Indexing and sequences (within a vector)
 
@@ -78,23 +76,22 @@ str(example_data)
 If we want to extract one or several values from a vector, we must provide one
 or several indices in square brackets, just as we do in math. 
 
-<!--
 For instance:
 
 ```{r, results='show', purl=FALSE, eval=FALSE}
-expression[2] # what level of expression is in the second element of the vector?
-expression[c(3, 2)]
-expression[2:4]
-expression[c(3,2, 2:4)] # combining both what do you get?
+animal=c("dog", "cat", "sea cucumber", "sea urchin")
+animal[2] # what animal is in the second element of the vector?
+animal[c(3, 2)]
+animal[2:4]
+animal[c(3,2, 2:4)] # combining both what do you get?
 ```
--->
 
 R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
 counting at 1, because that's what human beings typically do. Languages in the C
 family (including C++, Java, Perl, and Python) count from 0 because that's
 simpler for computers to do.
 
-<!--
+
 `:` is a special function that creates numeric vectors of integer in increasing
 or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
 (for __seq__uence) can be used to create more complex patterns:
@@ -105,8 +102,10 @@ seq(5, 10, length.out=3)       # equal breaks of sequence into vector length = l
 seq(50, by=5, length.out=10)   # sequence 50 by 5 until you hit vector length = length.out
 seq(1, 8, by=3)                # sequence by 3 until you hit 8
 ```
--->
 
+
+
+# Indexing and sequences (within a `data.frame`)
 
 Our metadata data frame has rows and columns (it has 2 dimensions), if we want to
 extract some specific data from it, we need to specify the "coordinates" we want
@@ -121,7 +120,8 @@ metadata[, 7]    # the entire 7th column
 head_meta <- metadata[1:6, ] # metadata[1:6, ] is equivalent to head(metadata)
 ```
 
-<!--
+
+
 ### Challenge
 
 1. The function `nrow()` on a `data.frame` returns the number of rows. Use it,
@@ -133,9 +133,9 @@ head_meta <- metadata[1:6, ] # metadata[1:6, ] is equivalent to head(metadata)
 ```{r, purl=FALSE}
 meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
 ```
---->
 
-# Indexing and sequences (within a `data.frame`)
+
+# Indexing using column names
 
 For larger datasets, it can be tricky to remember the column number that
 corresponds to a particular variable. (Are species names in column 5 or 7? oh,
@@ -166,5 +166,4 @@ You can even access columns by column name _and_ select specific rows of interes
 ```{r, eval=FALSE}
 metadata[4:7, c("strain", "clade")]
 ```
-
 
