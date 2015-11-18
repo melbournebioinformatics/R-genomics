@@ -132,6 +132,22 @@ ggplot(metadata) +
   theme(axis.text.x = element_text(angle=45, hjust=1))
 ```
 
+When learning ggplot, it is often useful to break things up into several steps and view the plot after each step.  For example we could create a plot without a custom theme, view it and then add the customizations to our incomplete plot.
+
+```{r, fig.align='center',eval=FALSE}
+# Create the plot object without actually displaying anything
+p <- ggplot(metadata) +
+  geom_point(aes(x = sample, y= genome_size, color = generation, shape = cit), size = rel(3.0)) 
+
+p # Display the plot
+```
+
+```{r, fig.align='center',eval=FALSE}
+p <- p + theme(axis.text.x = element_text(angle=45, hjust=1))
+p
+```
+
+
 ## Histogram
 
 To plot a histogram we require another geometric object `geom_bar`, which requires a statistical transformation. Some plot types (such as scatterplots) do not require transformations, each point is plotted at x and y coordinates equal to the original value. Other plots, such as boxplots, histograms, prediction lines etc. need to be transformed, and usually has a default statistic that can be changed via the `stat_bin` argument. 
@@ -165,6 +181,64 @@ ggplot(metadata) +
           axis.title = element_text(size = rel(1.5)),
           axis.text = element_text(size = rel(1.25)))
 
+```
+
+## Raw data on the boxplot
+
+If we want to see the raw data points on top of our boxes we need to add another layer.  Since we want points we use `geom_point()` but because the `x` axis is categorical we are likely to have points plotted over the top of one another.  To avoid this we set the position to `jitter` which adds a small random value to the `x` position.
+
+```{r, fig.align='center'}
+ggplot(metadata) +
+  geom_boxplot(aes(x = cit, y = genome_size, fill = cit)) +
+  ggtitle('Boxplot of genome size by citrate mutant type') +
+  xlab('citrate mutant') +
+  ylab('genome size') +
+  theme(panel.grid.major = element_line(size = .5, color = "grey"),
+          axis.text.x = element_text(angle=45, hjust=1),
+          axis.title = element_text(size = rel(1.5)),
+          axis.text = element_text(size = rel(1.25))) +
+  geom_point(aes(x = cit, y= genome_size ),position="jitter")
+```
+
+Note that the `x` and `y` aesthetics for geom_boxplot and geom_point are the same in this plot.  We could have saved a bit of typing by adding these aesthetics to the base ggplot layer. 
+
+```{r, fig.align='center',eval=FALSE}
+ggplot(metadata,aes(x = cit, y = genome_size)) +
+  geom_boxplot(aes(fill = cit)) +
+  ggtitle('Boxplot of genome size by citrate mutant type') +
+  xlab('citrate mutant') +
+  ylab('genome size') +
+  theme(panel.grid.major = element_line(size = .5, color = "grey"),
+          axis.text.x = element_text(angle=45, hjust=1),
+          axis.title = element_text(size = rel(1.5)),
+          axis.text = element_text(size = rel(1.25))) +
+  geom_point(position="jitter")
+```
+
+
+
+### Challenge
+
+
+Try adding `+ facet_wrap(~clade)` to the previous plot.  It should produce a multi-facetted plot with data for each clade in a separate panel. Now use what you learned in the lesson on `dplyr` to pre-filter the data so that the `NA` and `unknown` panels don't appear in this plot.
+
+```{r, fig.align='center',echo=FALSE}
+library(dplyr)
+```
+
+```{r, fig.align='center'}
+
+metadata_c <- metadata %>% filter(!is.na(clade)) %>% filter(clade!='unknown')
+
+ggplot(metadata_c) +
+  geom_boxplot(aes(x = cit, y = genome_size, fill = cit)) +
+  ggtitle('Boxplot of genome size by citrate mutant type') +
+  xlab('citrate mutant') +
+  ylab('genome size') +
+  theme(panel.grid.major = element_line(size = .5, color = "grey"),
+        axis.text.x = element_text(angle=45, hjust=1),
+        axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.25))) + facet_wrap(~clade)
 ```
 
 ## Writing figures to file
