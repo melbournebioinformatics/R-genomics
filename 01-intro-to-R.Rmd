@@ -13,7 +13,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 > ## Learning Objectives
 >
-> * Familiarize participants with R syntax
+> * Familiarize yourself with R syntax
 > * Understand the concepts of objects and assignment
 > * Understand the concepts of vector and data types
 > * Get exposed to a few functions
@@ -22,6 +22,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 ## The R syntax
 
+<!--
 _Start by showing an example of a script_
 
 * Point to the different parts:
@@ -38,6 +39,7 @@ _Start by showing an example of a script_
 ```{r, echo=FALSE, purl=TRUE}
 ### Creating objects (assignments)
 ```
+-->
 
 You can get output from R simply by typing in math in the console
 
@@ -130,7 +132,7 @@ for function names. It's important to be consistent in the styling of your code
 guides are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html) and
 [Google's](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml).
 
-When assigning a value to an object, R does not print anything. You can force to
+When assigning a value to an object, R does not print anything. You can force it to
 print the value by using parentheses or by typing the name:
 
 
@@ -272,6 +274,26 @@ genome_length_mb <- 100
 ### Exercise
 
 What do you think is the current content of the object `genome_weight_pg`? 3.06 or 0.102?
+
+Instead of having to remember that 978Mb = 1 picogram we could create a function to convert genome lengths to weights. The R code below defines a function to do this job.  
+
+```{r, purl=FALSE}
+	genome_weight_from_length <- function(genome_length_mb){
+		genome_length_mb / 978
+	}
+```
+
+Once we create this function we can get a genome's weight if we have its length using our handy converter function
+
+```{r,purl=FALSE}
+	# For the human genome
+	genome_weight_from_length(3000)
+```
+
+
+### Challenge
+
+Create a function to calculate genome lengths in Mb from genome weights in picograms.  Test that your function works by using it to calculate the length of the human genome given its weight `3.07` picograms.
 
 
 ## Vectors and data types

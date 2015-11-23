@@ -18,9 +18,9 @@ metadata <- read.csv("data/Ecoli_metadata.csv")
 
 > ## Learning Objectives
 >
-> * understand the concept of a `data.frame`
-> * using sequences to index data
-> * know how to access any element of a `data.frame`
+> * Understand the concept of a `data.frame`
+> * Use sequences to index data
+> * Know how to access any element of a `data.frame`
 
 ------------
 
@@ -48,7 +48,7 @@ some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
 ```
 
 
-<!--- talk about colClasses argument?, row names?  --->
+<!--- talk about colClasses argument?, row names?  -->
 
 You can also create `data.frame` manually with the function `data.frame()`. This
 function can also take the argument `stringsAsFactors`. Compare the output of
@@ -124,16 +124,16 @@ head_meta <- metadata[1:6, ] # metadata[1:6, ] is equivalent to head(metadata)
 
 ### Challenge
 
-1. The function `nrow()` on a `data.frame` returns the number of rows. Use it,
-   in conjuction with `seq()` to create a new `data.frame` called
-   `meta_by_2` that includes every other row of the survey data frame
-   starting at row 2 (2, 4, 6, ...)
+The function `nrow()` on a `data.frame` returns the number of rows. Use it,
+in conjuction with `seq()` to create a new `data.frame` called
+`meta_by_2` that includes every other row of the survey data frame
+starting at row 2 (2, 4, 6, ...)
 
-
+<!--
 ```{r, purl=FALSE}
 meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
 ```
-
+-->
 
 # Indexing using column names
 
