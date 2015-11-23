@@ -217,29 +217,15 @@ ggplot(metadata,aes(x = cit, y = genome_size)) +
 
 
 
-### Challenge
-
+### Challenge 1
 
 Try adding `+ facet_wrap(~clade)` to the previous plot.  It should produce a multi-facetted plot with data for each clade in a separate panel. Now use what you learned in the lesson on `dplyr` to pre-filter the data so that the `NA` and `unknown` panels don't appear in this plot.
 
-```{r, fig.align='center',echo=FALSE}
-library(dplyr)
-```
+### Challenge 2
 
-```{r, fig.align='center'}
+Create a scatterplot with generation on the x axis, genome_size on the y axis and points coloured by `cit`. 
 
-metadata_c <- metadata %>% filter(!is.na(clade)) %>% filter(clade!='unknown')
 
-ggplot(metadata_c) +
-  geom_boxplot(aes(x = cit, y = genome_size, fill = cit)) +
-  ggtitle('Boxplot of genome size by citrate mutant type') +
-  xlab('citrate mutant') +
-  ylab('genome size') +
-  theme(panel.grid.major = element_line(size = .5, color = "grey"),
-        axis.text.x = element_text(angle=45, hjust=1),
-        axis.title = element_text(size = rel(1.5)),
-        axis.text = element_text(size = rel(1.25))) + facet_wrap(~clade)
-```
 
 ## Writing figures to file
 
@@ -265,6 +251,35 @@ dev.off()
 ```
 
 
+### Solutions
+
+Challenge 1
+
+
+```{r, fig.align='center',echo=FALSE}
+library(dplyr)
+```
+
+```{r, fig.align='center'}
+
+metadata_c <- metadata %>% filter(!is.na(clade)) %>% filter(clade!='unknown')
+
+ggplot(metadata_c) +
+  geom_boxplot(aes(x = cit, y = genome_size, fill = cit)) +
+  ggtitle('Boxplot of genome size by citrate mutant type') +
+  xlab('citrate mutant') +
+  ylab('genome size') +
+  theme(panel.grid.major = element_line(size = .5, color = "grey"),
+        axis.text.x = element_text(angle=45, hjust=1),
+        axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.25))) + facet_wrap(~clade)
+```
+
+Challenge 2
+
+```{r, fig.align='center'}
+ggplot(data=metadata,aes(x=generation,y=genome_size)) + geom_point(aes(color=cit))
+```
 
 
 Resources:

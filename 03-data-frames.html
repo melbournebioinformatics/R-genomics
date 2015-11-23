@@ -130,12 +130,6 @@ head_meta &lt;- metadata[1:6, ] # metadata[1:6, ] is equivalent to head(metadata
 <div id="challenge" class="section level3">
 <h3>Challenge</h3>
 <p>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called <code>meta_by_2</code> that includes every other row of the survey data frame starting at row 2 (2, 4, 6, …)</p>
-<!--
-
-```r
-meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
-```
--->
 </div>
 </div>
 <div id="indexing-using-column-names" class="section level1">
@@ -147,6 +141,11 @@ meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
 <pre class="r"><code>metadata[, c(&quot;strain&quot;, &quot;clade&quot;)]</code></pre>
 <p>You can even access columns by column name <em>and</em> select specific rows of interest. For example, if we wanted the strain and clade of just rows 4 through 7, we could do:</p>
 <pre class="r"><code>metadata[4:7, c(&quot;strain&quot;, &quot;clade&quot;)]</code></pre>
+<div id="challenge-solution" class="section level2">
+<h2>Challenge solution</h2>
+<p>Use the <code>seq</code> function in conjunction with its <code>by</code> option to construct an index sequence. This can be used to extract every second row from the <code>data.frame</code></p>
+<pre class="r"><code>meta_by_2 &lt;- metadata[seq(2, nrow(metadata), by=2), ]</code></pre>
+</div>
 </div>
 
 

@@ -74,6 +74,25 @@ To choose rows, use `filter()`:
 filter(metadata, cit == "plus")
 ```
 
+### Helper functions
+
+A number of helper functions are available to use within a `select` expression.  These include `starts_with()`, `ends_with()`, `matches()` and `contains()`. You can also use the `-` operator to explicitly exclude a column.  
+
+### Exercise
+
+Try the following commands to get a feel for the helper function syntax.
+
+```{r, results = 'hide', purl = FALSE}
+select(metadata, contains("e"))
+```
+
+```{r, results = 'hide', purl = FALSE}
+select(metadata, contains("e"),-clade)
+```
+
+
+What command would you use to include only those columns that start with the letter "c".
+
 ### Pipes
 
 But what if you wanted to select and filter? There are three ways to do this:

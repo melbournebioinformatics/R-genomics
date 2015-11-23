@@ -129,11 +129,6 @@ in conjuction with `seq()` to create a new `data.frame` called
 `meta_by_2` that includes every other row of the survey data frame
 starting at row 2 (2, 4, 6, ...)
 
-<!--
-```{r, purl=FALSE}
-meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
-```
--->
 
 # Indexing using column names
 
@@ -165,5 +160,13 @@ You can even access columns by column name _and_ select specific rows of interes
 
 ```{r, eval=FALSE}
 metadata[4:7, c("strain", "clade")]
+```
+
+## Challenge solution
+
+Use the `seq` function in conjunction with its `by` option to construct an index sequence. This can be used to extract every second row from the `data.frame`
+
+```{r, purl=FALSE}
+meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
 ```
 
