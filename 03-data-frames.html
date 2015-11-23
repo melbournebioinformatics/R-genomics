@@ -109,9 +109,9 @@ img {
 <blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>understand the concept of a <code>data.frame</code></li>
-<li>using sequences to index data</li>
-<li>know how to access any element of a <code>data.frame</code></li>
+<li>Understand the concept of a <code>data.frame</code></li>
+<li>Use sequences to index data</li>
+<li>Know how to access any element of a <code>data.frame</code></li>
 </ul>
 </blockquote>
 <hr />
@@ -122,7 +122,7 @@ img {
 <p>A <code>data.frame</code> can be created by the functions <code>read.csv()</code> or <code>read.table()</code>, in other words, when importing spreadsheets from your hard drive (or the web).</p>
 <p>By default, <code>data.frame</code> converts (= coerces) columns that contain characters (i.e., text) into the <code>factor</code> data type. Depending on what you want to do with the data, you may want to keep these columns as <code>character</code>. To do so, <code>read.csv()</code> and <code>read.table()</code> have an argument called <code>stringsAsFactors</code> which can be set to <code>FALSE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/some_file.csv&quot;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
-<!--- talk about colClasses argument?, row names?  --->
+<!--- talk about colClasses argument?, row names?  -->
 <p>You can also create <code>data.frame</code> manually with the function <code>data.frame()</code>. This function can also take the argument <code>stringsAsFactors</code>. Compare the output of these examples, and compare the difference between when the data are being read as <code>character</code> and when they are being as <code>factor</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">animal=</span><span class="kw">c</span>(<span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;sea cucumber&quot;</span>, <span class="st">&quot;sea urchin&quot;</span>),
                            <span class="dt">feel=</span><span class="kw">c</span>(<span class="st">&quot;furry&quot;</span>, <span class="st">&quot;furry&quot;</span>, <span class="st">&quot;squishy&quot;</span>, <span class="st">&quot;spiny&quot;</span>),
@@ -168,10 +168,13 @@ metadata[, <span class="dv">7</span>]    <span class="co"># the entire 7th colum
 head_meta &lt;-<span class="st"> </span>metadata[<span class="dv">1</span>:<span class="dv">6</span>, ] <span class="co"># metadata[1:6, ] is equivalent to head(metadata)</span></code></pre></div>
 <div id="challenge" class="section level3">
 <h3>Challenge</h3>
-<ol style="list-style-type: decimal">
-<li>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called <code>meta_by_2</code> that includes every other row of the survey data frame starting at row 2 (2, 4, 6, …)</li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meta_by_2 &lt;-<span class="st"> </span>metadata[<span class="kw">seq</span>(<span class="dv">2</span>, <span class="kw">nrow</span>(metadata), <span class="dt">by=</span><span class="dv">2</span>), ]</code></pre></div>
+<p>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called <code>meta_by_2</code> that includes every other row of the survey data frame starting at row 2 (2, 4, 6, …)</p>
+<!--
+
+```r
+meta_by_2 <- metadata[seq(2, nrow(metadata), by=2), ]
+```
+-->
 </div>
 </div>
 <div id="indexing-using-column-names" class="section level1">

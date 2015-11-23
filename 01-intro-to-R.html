@@ -97,7 +97,6 @@ img {
 <div id="TOC">
 <ul>
 <li><a href="#the-r-syntax">The R syntax</a></li>
-<li><a href="#creating-objects">Creating objects</a></li>
 <li><a href="#assignment-operator">Assignment operator</a><ul>
 <li><a href="#exercise">Exercise</a></li>
 </ul></li>
@@ -112,6 +111,7 @@ img {
 <li><a href="#exercise-3">Exercise</a></li>
 <li><a href="#solution-2">Solution</a></li>
 <li><a href="#exercise-4">Exercise</a></li>
+<li><a href="#challenge">Challenge</a></li>
 </ul></li>
 <li><a href="#vectors-and-data-types">Vectors and data types</a></li>
 </ul>
@@ -121,7 +121,7 @@ img {
 <blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Familiarize participants with R syntax</li>
+<li>Familiarize yourself with R syntax</li>
 <li>Understand the concepts of objects and assignment</li>
 <li>Understand the concepts of vector and data types</li>
 <li>Get exposed to a few functions</li>
@@ -130,26 +130,29 @@ img {
 <hr />
 <div id="the-r-syntax" class="section level2">
 <h2>The R syntax</h2>
-<p><em>Start by showing an example of a script</em></p>
-<ul>
-<li>Point to the different parts:</li>
-<li>a function</li>
-<li>the assignment operator <code>&lt;-</code></li>
-<li>the <code>=</code> for arguments</li>
-<li>the comments <code>#</code> and how they are used to document function and its content</li>
-<li>the <code>$</code> operator</li>
-<li>Point to indentation and consistency in spacing to improve clarity</li>
-</ul>
-</div>
-<div id="creating-objects" class="section level2">
-<h2>Creating objects</h2>
+<!--
+_Start by showing an example of a script_
+
+* Point to the different parts:
+  - a function
+  - the assignment operator `<-`
+  - the `=` for arguments
+  - the comments `#` and how they are used to document function and its content
+  - the `$` operator
+* Point to indentation and consistency in spacing to improve clarity
+
+
+## Creating objects
+
+
+-->
 <p>You can get output from R simply by typing in math in the console</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span>
 <span class="dv">12</span>/<span class="dv">7</span></code></pre></div>
 <p>We can also comment what it is we’re doing</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># I am adding 3 and 5. R is fun!</span>
 <span class="dv">3+5</span></code></pre></div>
-<p>What happens if we do that same command with the # sign in the front?</p>
+<p>What happens if we do that same command without the # sign in the front?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I am adding <span class="dv">3</span> and <span class="dv">5</span>. R is fun!
 <span class="dv">3+5</span></code></pre></div>
 <p>Now R is trying to run that sentence as a command, and it doesn’t work. Now we’re stuck over in the console. The <code>+</code> sign means that it’s still waiting for input, so we can’t type in a new command. To get out of this type <code>Esc</code>. This will work whenever you’re stuck with that <code>+</code> sign.</p>
@@ -184,8 +187,8 @@ a +<span class="st"> </span>b</code></pre></div>
 </div>
 <div id="notes-on-objects" class="section level2">
 <h2>Notes on objects</h2>
-<p>Objects can be given any name such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. You want your object names to be explicit and not too long. They cannot start with a number (<code>2x</code> is not valid but <code>x2</code> is). R is case sensitive (e.g., <code>genome_length_mb</code> is different from <code>genome_length_mb</code>). There are some names that cannot be used because they represent the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it’s allowed, it’s best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). In doubt check the help to see if the name is already in use. It’s also best to avoid dots (<code>.</code>) within a variable name as in <code>my.dataset</code>. There are many functions in R with dots in their names for historical reasons, but because dots have a special meaning in R (for methods) and other programming languages, it’s best to avoid them. It is also recommended to use nouns for variable names, and verbs for function names. It’s important to be consistent in the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s</a> and <a href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google’s</a>.</p>
-<p>When assigning a value to an object, R does not print anything. You can force to print the value by using parentheses or by typing the name:</p>
+<p>Objects can be given any name such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. You want your object names to be explicit and not too long. They cannot start with a number (<code>2x</code> is not valid but <code>x2</code> is). R is case sensitive (e.g., <code>genome_length_mb</code> is different from <code>Genome_Length_MB</code>). There are some names that cannot be used because they represent the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it’s allowed, it’s best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). In doubt check the help to see if the name is already in use. It’s also best to avoid dots (<code>.</code>) within a variable name as in <code>my.dataset</code>. There are many functions in R with dots in their names for historical reasons, but because dots have a special meaning in R (for methods) and other programming languages, it’s best to avoid them. It is also recommended to use nouns for variable names, and verbs for function names. It’s important to be consistent in the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s</a> and <a href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google’s</a>.</p>
+<p>When assigning a value to an object, R does not print anything. You can force it to print the value by using parentheses or by typing the name:</p>
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
@@ -249,6 +252,17 @@ genome_length_mb /<span class="st"> </span><span class="fl">978.0</span></code><
 <div id="exercise-4" class="section level3">
 <h3>Exercise</h3>
 <p>What do you think is the current content of the object <code>genome_weight_pg</code>? 3.06 or 0.102?</p>
+<p>Instead of having to remember that 978Mb = 1 picogram we could create a function to convert genome lengths to weights. The R code below defines a function to do this job.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    genome_weight_from_length &lt;-<span class="st"> </span>function(genome_length_mb){
+        genome_length_mb /<span class="st"> </span><span class="dv">978</span>
+    }</code></pre></div>
+<p>Once we create this function we can get a genome’s weight if we have its length using our handy converter function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># For the human genome</span>
+    <span class="kw">genome_weight_from_length</span>(<span class="dv">3000</span>)</code></pre></div>
+</div>
+<div id="challenge" class="section level3">
+<h3>Challenge</h3>
+<p>Create a function to calculate genome lengths in Mb from genome weights in picograms. Test that your function works by using it to calculate the length of the human genome given its weight <code>3.07</code> picograms.</p>
 </div>
 </div>
 <div id="vectors-and-data-types" class="section level2">
