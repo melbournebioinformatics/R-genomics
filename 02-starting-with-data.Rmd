@@ -173,9 +173,12 @@ You can check this by using the function `levels()`, and check the
 number of levels using `nlevels()`:
 
 ```{r, purl=FALSE, eval=FALSE}
+citrate <- metadata$cit
 levels(citrate)
 nlevels(citrate)
 ```
+
+Note that we used the `$` operator to extract the `cit` column of the dataframe. We assigned this to a new object called `citrate` for convenience.
 
 Sometimes, the order of the factors does not matter, other times you might want
 to specify the order because it is meaningful (e.g., "low", "medium", "high") or

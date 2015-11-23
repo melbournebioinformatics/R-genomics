@@ -223,7 +223,6 @@ This is useful when there start to be more arguments.
 We're going to work with genome lengths.
 - Create a variable `genome_length_mb` and assign it the value `4.6`
 
-## Solution
 
 ```{r, purl=FALSE}
 (genome_length_mb <- 4.6)
@@ -237,7 +236,6 @@ instance, we may want to convert this to the weight of the genome in
 picograms (for some reason). 978Mb = 1picogram. Divide the 
 genome length in Mb by 978. 
 
-### Solution
 
 ```{r, purl=FALSE}
 genome_length_mb / 978.0
@@ -248,15 +246,14 @@ It turns out an E. coli genome doesn't weigh very much.
 ### Exercise
 
 We can also change the variable's value by assigning it a new one. Say
-we want to think about a human genome rather than E. coli. Change `genome_length_mb` to 3000 and figure out the weight of the human 
-genome. 
+we want to think about a human genome rather than E. coli. Change `genome_length_mb` to 3000 and figure out the weight of the human genome. 
 
-### Solution
 
 ```{r, purl=FALSE}
 genome_length_mb <- 3000.0
 genome_length_mb / 978.0
 ```
+
 
 This means that assigning a value to one variable does not change the values of
 other variables.  For example, let's store the genome's weight in a variable.
@@ -275,19 +272,22 @@ genome_length_mb <- 100
 
 What do you think is the current content of the object `genome_weight_pg`? 3.06 or 0.102?
 
+
+## Creating your own functions
+
 Instead of having to remember that 978Mb = 1 picogram we could create a function to convert genome lengths to weights. The R code below defines a function to do this job.  
 
 ```{r, purl=FALSE}
-	genome_weight_from_length <- function(genome_length_mb){
-		genome_length_mb / 978
-	}
+genome_weight_from_length <- function(genome_length_mb){
+	genome_length_mb / 978
+}
 ```
 
-Once we create this function we can get a genome's weight if we have its length using our handy converter function
+Once we create this function we can get a genome's weight if we have its length by typing the name of our function and then the length in brackets.
 
 ```{r,purl=FALSE}
 	# For the human genome
-	genome_weight_from_length(3000)
+genome_weight_from_length(3000)
 ```
 
 
@@ -327,6 +327,11 @@ length(glengths)
 length(species)
 ```
 
+These two vectors naturally fit together. We can formally associate the species names with their genome lengths using a named vector.
+
+```{r, purl=FALSE}
+names(glengths) <- species
+```
 
 You can also do math with whole vectors. For instance if we wanted to multiply the genome lengths of all the genomes in the list, we can do
 
@@ -343,6 +348,12 @@ new_lengths
 
 This is very useful if we have data in different vectors that we 
 want to combine or work with. 
+
+Many functions in R accept vectors as arguments and operate accordingly.  For example we could use the function we created earlier to calculate genome weights to calculate a vector of genome weights given a vector of genome lengths.
+
+```{r, purl=FALSE}
+genome_weight_from_length(glengths)
+```
 
 There are few ways to figure out what's going on in a vector. 
 
@@ -390,6 +401,14 @@ ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
 
 
+## Solutions
+
+```{r,purl=FALSE}
+genome_length_from_weight <- function(genome_weight_picograms){
+	genome_weight_picograms * 978
+}
+
+```
 
 
 
