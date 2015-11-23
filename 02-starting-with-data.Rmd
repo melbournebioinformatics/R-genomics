@@ -23,7 +23,7 @@ minutes: 20
 # Looking at metadata
 ```
 
-We are studying a population of Escherichia coli (designated Ara-3), which were propagated for more than 40,000 generations in a glucose-limited minimal medium. This medium was supplemented with citrate which E. coli cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points reveals that spontaneous citrate-using mutants (Cit+) appeared at around 31,000 generations. This metadata describes information on the Ara-3 clones and the columns represent:
+We are studying a population of Escherichia coli (designated Ara-3), which were propagated for more than 40,000 generations in a glucose-limited minimal medium. This medium was supplemented with citrate which E. coli cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points reveals that spontaneous citrate-using mutants (Cit+) appeared at around 31,000 generations. This metadata describes information on the Ara-3 clones and what the columns represent:
 
 | Column           | Description                                |
 |------------------|--------------------------------------------|
@@ -37,7 +37,7 @@ We are studying a population of Escherichia coli (designated Ara-3), which were 
 
 
 
-The metadata file required for this lesson can be downlaoded by clicking on this [link](./data/Ecoli_metadata.csv)
+The metadata file required for this lesson can be downloaded by clicking on this [link](./data/Ecoli_metadata.csv)
 
 - First, make sure you are in the correct working directory by typing `getwd()`.
 - Second, create a new directory within this working directory called `data`
@@ -126,7 +126,7 @@ objects besides `data.frame`.
 
 ### Challenge
 
-Based on the give table of functions to asses data structure, can you answer the following questions?
+Based on the given table of functions to assess data structure, can you answer the following questions?
 
 * What is the class of the object `metadata`?
 * How many rows and how many columns are in this object?
@@ -154,6 +154,7 @@ actually integers under the hood, and you need to be careful when treating them
 like strings.
 
 In the data frame we just imported, let's do 
+
 ```{r, purl=TRUE}
 str(metadata)
 ```
@@ -167,7 +168,6 @@ assumed to be a factor. Once created, factors can only contain a pre-defined set
 
 For instance, we see that `cit` is a Factor w/ 3 levels, `minus`, `plus` and `unknown`.
 
-<!--
 
 You can check this by using the function `levels()`, and check the
 number of levels using `nlevels()`:
@@ -234,4 +234,3 @@ barplot(table(exprmt))
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
---->

@@ -13,15 +13,13 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 > ## Learning Objectives
 >
-> * Articulating motivations for this lesson
-> * Introduce participants to the RStudio interface
-> * Set up participants to have a working directory with a `data/` folder inside
-> * Introduce R syntax
-> * Point to relevant information on how to get help, and understand how to ask well formulated questions
+> * Navigate the RStudio interface
+> * Get set up with a working directory with a `data/` folder inside
+> * Know how to get help, and understand how to ask well formulated questions
 
 ------------
 
-# Presentation of RStudio
+# RStudio
 
 Start RStudio -- Let's start by learning about our tool.
 
