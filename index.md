@@ -50,10 +50,6 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 5. [Lesson 04 Aggregating and analyzing data with dplyr](04-dplyr.html)
 6. [Lesson 05 Data visualisation with ggplot2](05-data-visualization.html)
 
-## Data
-
-Data files for the lesson are available here: [{{page.dataurl %}}]({{page.dataurl %}})
-
 
 ### Requirements
 
