@@ -250,15 +250,68 @@ ggplot(example_data) +
 dev.off()
 ```
 
+## Tidyr (Optional)
+
+A great package that works very well together with `dplyr` and `ggplot` is `tidyr`.  Using these packages could fill up a course in itself.  If you're curious this is a quick illustration of how they all work together.
+
+For this example you will need another dataset which you can download  [here](./data/squid.rda)
+
+The data have been packaged into a special R data format.  Instead of reading this data in with the `read.csv` command we load it using `load` like this;
+
+```{r}
+load("data/squid.rda")
+```
+
+When you run this command it will automatically create an object in your environment called `squid`.  Take a look at the data using head
+
+```{r}
+head(squid)
+```
+
+There are several identifying columns `prot_id`, `protein_group`.  There is a column with protein expression measurements (from one particular tissue, Slime) and there are 5 columns with RNA expression measurements for different tissues `Arms`, `Brain`, `Slime`, `VM` and `DM`. (VM and DM are Ventral and Dorsal Mantle). This data needs tidying because we have got multiple observations per row.  Specifically we are interested in collapsing all of the RNA expression measurements into a single column with another column to code for the tissue they came from.  This kind of manipulation is exactly what the `tidyr` package is for.  
+
+Load the `tidyr` package
+
+```{r}
+library(tidyr)
+library(dplyr)
+```
+
+It also turns out that there is another issue with the data.  Important information is encoded in the rownames but we would prefer to have that information in its own column.  We deal with that using the `add_rownames()` function from `dplyr`. 
+
+```{r}
+squid %>% add_rownames("gene_id")
+```
+
+Now we gather the RNA expression information into a pair of columns, and we also use piping to combined the `tidyr` operation with the `add_rownames()` operation from `dplyr`.
+
+```{r}
+tidy_squid <- squid %>% add_rownames("gene_id") %>% 
+  gather(Tissue , TPM, -prot_id, -protein_group,-iBAQ,-gene_id)
+```
+
+### Challenge 3
+
+Use the `tidy_squid` data to create a scatterplot of `iBAQ` protein expression versus `RNA` expression. Colour the points to distinguish different tissue types.
+
+
+
+### Challenge 4
+
+This time use the `tidy_squid` data to create  a basic heatmap with tissues as columns, `gene_id` as rows and with heatmap squares coloured according to `TPM` value. You will need to use `geom_tile()` for this.
+
+
 
 ### Solutions
 
 Challenge 1
 
-
+<!--
 ```{r, fig.align='center',echo=FALSE}
 library(dplyr)
+library(tidyr)
 ```
+-->
 
 ```{r, fig.align='center'}
 
@@ -280,6 +333,19 @@ Challenge 2
 ```{r, fig.align='center'}
 ggplot(data=metadata,aes(x=generation,y=genome_size)) + geom_point(aes(color=cit))
 ```
+
+Challenge 3
+
+```{r, fig.align='center'}
+ggplot(tidy_squid,aes(x=iBAQ,y=TPM)) + geom_point(aes(color=Tissue))
+```
+
+Challenge 4
+
+```{r, fig.align='center'}
+ggplot(tidy_squid,aes(x=Tissue,y=gene_id)) + geom_tile(aes(fill=TPM))
+```
+
 
 
 Resources:
