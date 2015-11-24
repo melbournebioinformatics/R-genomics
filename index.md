@@ -50,6 +50,10 @@ in working with {{page.domain %}} data in {{page.topic %}}.
 5. [Lesson 04 Aggregating and analyzing data with dplyr](04-dplyr.html)
 6. [Lesson 05 Data visualisation with ggplot2](05-data-visualization.html)
 
+### Resources
+
+You can find the [RStudio cheat sheets here](https://www.rstudio.com/resources/cheatsheets/),
+including the dplyr/tidyr, ggplot2 and R-markdown cheat sheets we used.
 
 ### Requirements
 
