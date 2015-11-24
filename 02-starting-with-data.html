@@ -240,8 +240,10 @@ img {
 <p>When we read in a file, any column that contains text is automatically assumed to be a factor. Once created, factors can only contain a pre-defined set values, known as <em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order.</p>
 <p>For instance, we see that <code>cit</code> is a Factor w/ 3 levels, <code>minus</code>, <code>plus</code> and <code>unknown</code>.</p>
 <p>You can check this by using the function <code>levels()</code>, and check the number of levels using <code>nlevels()</code>:</p>
-<pre class="r"><code>levels(citrate)
+<pre class="r"><code>citrate &lt;- metadata$cit
+levels(citrate)
 nlevels(citrate)</code></pre>
+<p>Note that we used the <code>$</code> operator to extract the <code>cit</code> column of the dataframe. We assigned this to a new object called <code>citrate</code> for convenience.</p>
 <p>Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows to compare levels:</p>
 <pre class="r"><code>expression &lt;- factor(c(&quot;low&quot;, &quot;high&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;))
 levels(expression)
